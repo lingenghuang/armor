@@ -80,6 +80,8 @@ int main(int argc, char **argv)
     {
         input_video << "1.mp4";
     }
+	
+	VideoWriter writer("output.avi",CV_FOURCC('M','J','P','G'),60,Size(640,480));
 	VideoCapture capture(input_video.str());
 	int jump = 0; //某个视频前几帧imshow会报错，这里的jump用来跳过前几帧
 	int fd = open("/dev/ttyUSB0", O_RDWR | O_NOCTTY | O_NDELAY);
@@ -146,8 +148,9 @@ int main(int argc, char **argv)
 
 			namedWindow("yuantu"); //展示处理完的图像
 			imshow("yuantu", src);
+			writer << src;
 			waitKey(1);
-
+            
 			time0 = ((double)getTickCount() - time0) / getTickFrequency(); //计时
 			cout << "runing time=" << time0 << "s" << endl;
 		}
