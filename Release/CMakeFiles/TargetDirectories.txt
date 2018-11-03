@@ -1,0 +1,3 @@
+/home/nht/zhuanjia/Release/CMakeFiles/edit_cache.dir
+/home/nht/zhuanjia/Release/CMakeFiles/rebuild_cache.dir
+/home/nht/zhuanjia/Release/CMakeFiles/armor.dir
