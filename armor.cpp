@@ -146,8 +146,6 @@ int main(int argc, char **argv)
 				bytes_written = write(fd, tail, sizeof(tail));
 			}
 
-			namedWindow("yuantu"); //展示处理完的图像
-			imshow("yuantu", src);
 			writer << src;
 			waitKey(1);
             
