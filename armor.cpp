@@ -15,7 +15,7 @@
 using namespace cv;
 using namespace std;
 
-#define BLUE 1 //选择检测蓝色还是红色装甲
+#define BLUE 0 //选择检测蓝色还是红色装甲
 
 const double PI = 3.14159;
 
