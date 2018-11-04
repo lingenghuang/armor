@@ -80,8 +80,8 @@ int main(int argc, char **argv)
     {
         input_video << "1.mp4";
     }
-	
-	VideoWriter writer("output.avi",CV_FOURCC('M','J','P','G'),60,Size(640,480));
+	long int count_frame=0;
+	VideoWriter writer("output1.avi",CV_FOURCC('M','J','P','G'),60,Size(640,480));
 	VideoCapture capture(input_video.str());
 	int jump = 0; //某个视频前几帧imshow会报错，这里的jump用来跳过前几帧
 	int fd = open("/dev/ttyUSB0", O_RDWR | O_NOCTTY | O_NDELAY);
@@ -93,7 +93,7 @@ int main(int argc, char **argv)
 		jump++; //某个视频前几帧imshow会报错，这里的jump用来跳过前几帧
 		if (jump > 10)
 		{
-			double time0 = static_cast<double>(getTickCount()); //计时函数
+			
 
 			Mat image = gray(src);												   //阈值化
 			vector<std::vector <Point> > contours;								   //储存找到的轮廓
@@ -145,12 +145,13 @@ int main(int argc, char **argv)
 				bytes_written = 0;
 				bytes_written = write(fd, tail, sizeof(tail));
 			}
-
+            count_frame++;
+			if(count_frame%300==0)
+			{
+				cout<<count_frame<<endl;
+			}
 			writer << src;
 			waitKey(1);
-            
-			time0 = ((double)getTickCount() - time0) / getTickFrequency(); //计时
-			cout << "runing time=" << time0 << "s" << endl;
 		}
 	}
 
