@@ -93,8 +93,8 @@ int main(int argc, char **argv)
 		jump++; //某个视频前几帧imshow会报错，这里的jump用来跳过前几帧
 		if (jump > 10)
 		{
-			
-
+			if(src.empty())
+			    break;
 			Mat image = gray(src);												   //阈值化
 			vector<std::vector <Point> > contours;								   //储存找到的轮廓
 			findContours(image, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE); //查找外轮廓
